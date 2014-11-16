@@ -55,6 +55,8 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set number
 
 
+" === unite plugin ===
+
 " CtrlP search
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
