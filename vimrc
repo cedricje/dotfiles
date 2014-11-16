@@ -67,6 +67,10 @@ nnoremap <silent> <C-p> :Unite -start-insert -buffer-name=files -winheight=10 fi
 "contemt searching
 nnoremap <space>/ :Unite grep:.<cr>
 
+" enable history yanking
+let g:unite_source_history_yank_enable = 1
+nnoremap <space>y :<C-u>Unite history/yank<CR>
+
 " === airline plugin ===
 "let g:airline_powerline_fonts = 1
 set laststatus=2
