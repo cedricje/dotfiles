@@ -64,7 +64,6 @@ call unite#custom_source('file_rec/async','sorters','sorter_rank')
 " replacing unite with ctrl-p
 nnoremap <silent> <C-p> :Unite -start-insert -buffer-name=files -winheight=10 file_rec/async<cr>
 
-"airline
+" === airline plugin ===
 "let g:airline_powerline_fonts = 1
-let g:airline_theme='badwolf'
 set laststatus=2
