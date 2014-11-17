@@ -33,7 +33,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
     NeoBundle 'bling/vim-airline'
     NeoBundle 'Shougo/unite.vim'
     NeoBundle 'fugitive.vim'
-
+    NeoBundle 'asins/mark'
     " You can specify revision/branch/tag.
     "NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 
