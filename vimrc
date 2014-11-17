@@ -48,12 +48,44 @@ filetype plugin indent on
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
 
-
+" === general config ===
 syntax on
 
+"configure list chars
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set number
+set ffs=unix,mac,dos "file formats
+set hlsearch "higlight searches
+" indentation
+set cindent
+set autoindent
+set tabstop=4
+set shiftwidth=4
 
+"set autocompletion fr some filetypes
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+
+"set tabsettings for some filetype
+autocmd Filetype c setlocal ts=4 sw=4 expandtab
+autocmd Filetype h setlocal ts=4 sw=4 expandtab
+autocmd Filetype python setlocal ts=4 sw=4
+au FileType gitcommit set tw=72
+
+"highlight trailing whitespaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+au ColorScheme * highlight ExtraWhitespace guibg=red
+au BufEnter * match ExtraWhitespace /\s\+$/
+au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+au InsertLeave * match ExtraWhiteSpace /\s\+$/
+
+"go through buffers
+nnoremap <Tab> :bn<CR>
 
 " === unite plugin ===
 
