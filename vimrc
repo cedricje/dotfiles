@@ -106,3 +106,7 @@ nnoremap <space>y :<C-u>Unite history/yank<CR>
 " === airline plugin ===
 "let g:airline_powerline_fonts = 1
 set laststatus=2
+
+" === tagbar plugin ===
+nnoremap <silent> <F4> :TagbarToggle<CR>
+let g:tagbar_left = 1 "open tagbar on left side
