@@ -87,6 +87,32 @@ au InsertLeave * match ExtraWhiteSpace /\s\+$/
 "go through buffers
 nnoremap <Tab> :bn<CR>
 
+"cycle between tabsettings
+let b:TabIndex = 0
+let g:TabSettings = [{'ts': 8, 'sw' : 8, 'expandtab' : 0},
+					\{'ts' : 4, 'sw' : 4, 'expandtab' : 1},
+					\{'ts' : 4, 'sw' : 4, 'expandtab' : 0} ]
+
+
+function TabToggle()
+	let l:max = len(g:TabSettings)
+	let l:buf = 'TabSettings '
+	let b:TabIndex = b:TabIndex + 1
+
+	if b:TabIndex >= l:max
+		let b:TabIndex = 0
+	endif
+
+	for key in keys(g:TabSettings[b:TabIndex])
+		execute "let &" . key . "=g:TabSettings[b:TabIndex]['" . key . "']"
+		let l:buf=l:buf . key . "=" . eval("g:TabSettings[b:TabIndex]['" . key . "']") . " "
+	endfor
+	echo l:buf
+endfunction
+
+noremap <silent> <F5> :call TabToggle()<CR>
+
+
 " === unite plugin ===
 
 " CtrlP search
