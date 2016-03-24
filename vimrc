@@ -16,24 +16,25 @@ NeoBundleFetch 'Shougo/neobundle.vim'
     " Add or remove your Bundles here:
     "NeoBundle 'Shougo/neosnippet.vim'
     "NeoBundle 'Shougo/neosnippet-snippets'
-    "NeoBundle 'tpope/vim-fugitive'
     "NeoBundle 'kien/ctrlp.vim'
     "NeoBundle 'flazz/vim-colorschemes'
     NeoBundle 'Shougo/vimproc.vim', {
-			    \ 'build' : {
-			    \     'windows' : 'tools\\update-dll-mingw',
-			    \     'cygwin' : 'make -f make_cygwin.mak',
-			    \     'mac' : 'make -f make_mac.mak',
-			    \     'linux' : 'make',
-			    \     'unix' : 'gmake',
-			    \    },
-			    \ }
+                \ 'build' : {
+                \     'windows' : 'tools\\update-dll-mingw',
+                \     'cygwin' : 'make -f make_cygwin.mak',
+                \     'mac' : 'make -f make_mac.mak',
+                \     'linux' : 'make',
+                \     'unix' : 'gmake',
+                \    },
+                \ }
     NeoBundle 'LaTeX-Suite-aka-Vim-LaTeX'
     NeoBundle 'Tagbar'
     NeoBundle 'bling/vim-airline'
     NeoBundle 'Shougo/unite.vim'
-    NeoBundle 'fugitive.vim'
+    NeoBundle 'tpope/vim-fugitive'
     NeoBundle 'asins/mark'
+    NeoBundle 'hari-rangarajan/CCTree' " Vim CCTree plugin
+    NeoBundle 'Python-mode-klen' " 0.6.2 python mode
     " You can specify revision/branch/tag.
     "NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 
@@ -74,7 +75,7 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 "set tabsettings for some filetype
 autocmd Filetype c setlocal ts=4 sw=4 expandtab
 autocmd Filetype h setlocal ts=4 sw=4 expandtab
-autocmd Filetype python setlocal ts=4 sw=4
+autocmd Filetype python setlocal ts=4 sw=4 expandtab
 au FileType gitcommit set tw=72
 
 "highlight trailing whitespaces
@@ -90,24 +91,24 @@ nnoremap <Tab> :bn<CR>
 "cycle between tabsettings
 let b:TabIndex = 0
 let g:TabSettings = [{'ts': 8, 'sw' : 8, 'expandtab' : 0},
-					\{'ts' : 4, 'sw' : 4, 'expandtab' : 1},
-					\{'ts' : 4, 'sw' : 4, 'expandtab' : 0} ]
+                    \{'ts' : 4, 'sw' : 4, 'expandtab' : 1},
+                    \{'ts' : 4, 'sw' : 4, 'expandtab' : 0} ]
 
 
 function TabToggle()
-	let l:max = len(g:TabSettings)
-	let l:buf = 'TabSettings '
-	let b:TabIndex = b:TabIndex + 1
+    let l:max = len(g:TabSettings)
+    let l:buf = 'TabSettings '
+    let b:TabIndex = b:TabIndex + 1
 
-	if b:TabIndex >= l:max
-		let b:TabIndex = 0
-	endif
+    if b:TabIndex >= l:max
+        let b:TabIndex = 0
+    endif
 
-	for key in keys(g:TabSettings[b:TabIndex])
-		execute "let &" . key . "=g:TabSettings[b:TabIndex]['" . key . "']"
-		let l:buf=l:buf . key . "=" . eval("g:TabSettings[b:TabIndex]['" . key . "']") . " "
-	endfor
-	echo l:buf
+    for key in keys(g:TabSettings[b:TabIndex])
+        execute "let &" . key . "=g:TabSettings[b:TabIndex]['" . key . "']"
+        let l:buf=l:buf . key . "=" . eval("g:TabSettings[b:TabIndex]['" . key . "']") . " "
+    endfor
+    echo l:buf
 endfunction
 
 noremap <silent> <F5> :call TabToggle()<CR>
@@ -123,16 +124,61 @@ call unite#custom_source('file_rec/async','sorters','sorter_rank')
 nnoremap <silent> <C-p> :Unite -start-insert -buffer-name=files -winheight=10 file_rec/async<cr>
 
 "contemt searching
+if executable('ag')
+  " Use ag in unite grep source.
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts =
+  \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
+  \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('pt')
+  " Use pt in unite grep source.
+  " https://github.com/monochromegane/the_platinum_searcher
+  let g:unite_source_grep_command = 'pt'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('ack-grep')
+  " Use ack in unite grep source.
+  let g:unite_source_grep_command = 'ack-grep'
+  let g:unite_source_grep_default_opts =
+  \ '-i --no-heading --no-color -k -H'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
 nnoremap <space>/ :Unite grep:.<cr>
+
 
 " enable history yanking
 let g:unite_source_history_yank_enable = 1
 nnoremap <space>y :<C-u>Unite history/yank<CR>
 
 " === airline plugin ===
-"let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 set laststatus=2
 
 " === tagbar plugin ===
 nnoremap <silent> <F4> :TagbarToggle<CR>
 let g:tagbar_left = 1 "open tagbar on left side
+
+" === pymode plugin ===
+"Linting
+let g:pymode_lint = 1
+let g:pymode_lint_checkers = ['pylint', 'pyflakes','pep8']
+" let g:pymode_lint_checker = ['pylint']
+"ignore 80 characters limit
+let g:pymode_lint_ignore = "E501,C"
+" Auto check on save
+let g:pymode_lint_write = 1
+
+" syntax highlighting
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+let g:pymode_syntax_space_errors = g:pymode_syntax_all
+
+"python autocompletion
+let g:pymode_rope_completion = 0
+let g:pymode_rope_complete_on_dot = 0
+
+
+
