@@ -27,9 +27,11 @@ NeoBundleFetch 'Shougo/neobundle.vim'
                 \     'unix' : 'gmake',
                 \    },
                 \ }
+	NeoBundle 'altercation/vim-colors-solarized'
     NeoBundle 'LaTeX-Suite-aka-Vim-LaTeX'
     NeoBundle 'Tagbar'
-    NeoBundle 'bling/vim-airline'
+    NeoBundle 'vim-airline/vim-airline'
+    NeoBundle 'vim-airline/vim-airline-themes'
     NeoBundle 'Shougo/unite.vim'
     NeoBundle 'tpope/vim-fugitive'
     NeoBundle 'asins/mark'
@@ -51,6 +53,14 @@ NeoBundleCheck
 
 " === general config ===
 syntax on
+
+"need to set this to dark to get a light background...
+set background=dark
+set t_ut=
+set t_Co=256
+set term=xterm-256color
+"let g:solarized_termcolors=256
+colorscheme solarized
 
 "configure list chars
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
@@ -153,7 +163,9 @@ let g:unite_source_history_yank_enable = 1
 nnoremap <space>y :<C-u>Unite history/yank<CR>
 
 " === airline plugin ===
+let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts = 1
+let g:airline_theme='solarized'
 set laststatus=2
 
 " === tagbar plugin ===
