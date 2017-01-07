@@ -4,7 +4,7 @@
 #promptinit
 #prompt adam1
 
-setopt histignorealldups
+setopt histignorealldups sharehistory
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
@@ -41,6 +41,27 @@ __git_files () {
     _wanted files expl 'local files' _files
 }
 
+screen_toogle() {
+	xrandr --output HDMI1 --off
+	xrandr --output HDMI1 --auto --left-of eDP1 --output eDP1 --auto --primary
+}
+
+touch_toggle() {
+	SYNSTATE=$(synclient -l | grep TouchpadOff | awk '{ print $3 }')
+
+	# change to other state
+	if [ $SYNSTATE = 0 ]; then
+		synclient touchpadoff=1
+	elif [ $SYNSTATE = 1 ]; then
+		synclient touchpadoff=0
+	else
+		echo "Couldn't get touchpad status from synclient"
+	fi
+}
+
+mount_pc() {
+	sudo sshfs -o allow_other,IdentityFile=~/.ssh/id_rsa sah5051@192.168.18.132:/ /mnt/pc
+}
 
 gittify() {
 	chmod -R u+w *
@@ -76,11 +97,15 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-alias ag='ag -s'
 
 
+export P4USER=sah5051
+export P4PORT=sahwp4s01.be.softathome.com:1666
 
+alias p4set="source $HOME/scripts/p4set"
 alias cm="colormake"
 
+alias genservercfg="$HOME/scripts/genservercfg.sh"
+alias spotify="spotify --force-device-scale-factor=2"
 
-[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+unset GNOME_KEYRING_CONTROL
