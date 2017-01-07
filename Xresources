@@ -1,0 +1,109 @@
+Xft.dpi: 192
+
+!urxvt*font:      -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+!urxvt*font: xft:Terminus:pixelsize=28:dpi=192`
+urxvt*font: xft:Roboto\ Mono\ for\ Powerline:large:size=10,xft:Inconsolata\ for\ Powerline:size=12
+!urxvt.intensityStyles: false
+!urxvt*tint:	 black
+!urxvt*background: rgba:1111/1111/1111/dddd
+!urxvt*cursorColor:        #ffcc00
+!urxvt*foreground:	#dddddd
+urxvt*scrollTtyOutput:      false
+urxvt*scrollWithBuffer:     true
+urxvt*scrollTtyKeypress:    true
+
+URxvt.perl-ext-common:  default,resize-font
+URxvt.resize-font.smaller: C-Down
+URxvt.resize-font.bigger: C-Up
+
+
+!*color0: #000000000000
+!*color1: #CDCB00000000
+!*color2: #0000CDCB0000
+!*color3: #CDCBCDCB0000
+!*color4: #6666CC
+!*color5: #CDCB0000CDCB
+!*color7: #E5E2E5E2E5E2
+!*color8: #4CCC4CCC4CCC
+!*color9: #FFFF00000000
+!*color10: #0000FFFF0000
+!*color11: #FFFFFFFF0000
+!*color12: #33BBFF
+!urxvt*color12: SkyBlue2
+!*color13: #FFFF0000FFFF
+!*color14: #0000FFFFFFFF
+!*color15: #FFFFFFFFFFFF
+!
+
+
+! Solarized color scheme for the X Window System
+!
+! http://ethanschoonover.com/solarized
+
+
+! Common
+
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
+
+
+! Dark
+
+!#define S_base03        #002b36
+!#define S_base02        #073642
+!#define S_base01        #586e75
+!#define S_base00        #657b83
+!#define S_base0         #839496
+!#define S_base1         #93a1a1
+!#define S_base2         #eee8d5
+!#define S_base3         #fdf6e3
+
+
+! Light
+
+#define S_base03        #fdf6e3
+#define S_base02        #eee8d5
+#define S_base01        #93a1a1
+#define S_base00        #839496
+#define S_base0         #657b83
+#define S_base1         #586e75
+#define S_base2         #073642
+#define S_base3         #002b36
+
+
+! To only apply colors to your terminal, for example, prefix
+! the color assignment statement with its name. Example:
+!
+! URxvt*background:            S_base03
+
+*background:              S_base03
+*foreground:              S_base0
+*fading:                  20
+*fadeColor:               S_base03
+*cursorColor:             S_base1
+*pointerColorBackground:  S_base01
+*pointerColorForeground:  S_base1
+
+*color0:                  S_base02
+*color1:                  S_red
+*color2:                  S_green
+*color3:                  S_yellow
+*color4:                  S_blue
+*color5:                  S_magenta
+*color6:                  S_cyan
+*color7:                  S_base2
+*color9:                  S_orange
+*color8:                  S_base03
+*color10:                 S_base01
+*color11:                 S_base00
+*color12:                 S_base0
+*color13:                 S_violet
+*color14:                 S_base1
+*color15:                 S_base3
+
