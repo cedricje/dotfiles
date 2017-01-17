@@ -1,0 +1,17 @@
+[color]
+	status = auto
+	branch = auto
+	diff = auto
+[push]
+	default = current
+[alias]
+	lo = log --pretty=oneline --abbrev-commit
+	lnm = log --no-merges
+	lp = log -p
+	lg = log --graph --decorate --pretty=oneline --abbrev-commit
+	clr = clone --recursive
+	chr = !sh -c '(git checkout $0 && git submodule foreach --recursive git checkout $0)'
+[include]
+	path = ~/.gitconfig.local
+[credential]
+	helper = cache
