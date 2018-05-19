@@ -85,6 +85,10 @@ set autoindent
 set tabstop=4
 set shiftwidth=4
 
+" kaitai files as yaml
+au BufRead,BufNewFile *.ksy set filetype=yaml
+
+
 "set autocompletion fr some filetypes
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -98,6 +102,8 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd Filetype c setlocal ts=4 sw=4 expandtab
 autocmd Filetype h setlocal ts=4 sw=4 expandtab
 autocmd Filetype python setlocal ts=4 sw=4 expandtab
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
 au FileType gitcommit set tw=72
 
 "highlight trailing whitespaces
