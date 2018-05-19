@@ -45,11 +45,11 @@ NeoBundleFetch 'Shougo/neobundle.vim'
     NeoBundle 'tpope/vim-fugitive'
     NeoBundle 'asins/mark'
     NeoBundle 'hari-rangarajan/CCTree' " Vim CCTree plugin
-    NeoBundle 'Python-mode-klen' " 0.6.2 python mode
     NeoBundle 'ronakg/quickr-cscope.vim'
     NeoBundle 'scrooloose/nerdtree'
     NeoBundle 'ctrlpvim/ctrlp.vim'
     NeoBundle 'octol/vim-cpp-enhanced-highlight'
+    NeoBundle 'w0rp/ale'
 
     " You can specify revision/branch/tag.
     "NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -199,25 +199,6 @@ set laststatus=2
 nnoremap <silent> <F4> :TagbarToggle<CR>
 let g:tagbar_left = 1 "open tagbar on left side
 
-" === pymode plugin ===
-"Linting
-let g:pymode_lint = 1
-let g:pymode_lint_checkers = ['pylint', 'pyflakes','pep8']
-" let g:pymode_lint_checker = ['pylint']
-"ignore 80 characters limit
-let g:pymode_lint_ignore = "E501,C"
-" Auto check on save
-let g:pymode_lint_write = 1
-
-" syntax highlighting
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
-
-"python autocompletion
-let g:pymode_rope_completion = 0
-let g:pymode_rope_complete_on_dot = 0
 
 " YouCompleteMe
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
@@ -241,3 +222,18 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 
 
 
+"" ale
+" Set this in your vimrc file to disabling highlighting
+let g:ale_set_highlights = 0
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%severity%][%code%] %s [%linter%]'
+
+let g:ale_python_pylint_options = '--disable=missing-docstring,invalid-name,line-too-long,unused-argument --max-line-length=120 --extension-pkg-whitelist=pcapy'
+let g:ale_python_flake8_options = '--max-line-length=120'
+
+" disable ale for c
+let g:ale_linters = {
+        \ 'c': [],
+        \'cpp': []
+        \ }
