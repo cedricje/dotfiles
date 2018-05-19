@@ -47,6 +47,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
     NeoBundle 'hari-rangarajan/CCTree' " Vim CCTree plugin
     NeoBundle 'Python-mode-klen' " 0.6.2 python mode
     NeoBundle 'scrooloose/nerdtree'
+    NeoBundle 'ctrlpvim/ctrlp.vim'
 
     " You can specify revision/branch/tag.
     "NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -138,14 +139,6 @@ map <F3> :NERDTreeToggle<CR>
 
 
 " === unite plugin ===
-
-" CtrlP search
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom_source('file_rec/async','sorters','sorter_rank')
-" replacing unite with ctrl-p
-nnoremap <silent> <C-p> :Unite -start-insert -buffer-name=files -winheight=10 file_rec/async<cr>
-
 "contemt searching
 if executable('ag')
   " Use ag in unite grep source.
@@ -221,6 +214,9 @@ let g:ycm_filetype_blacklist = {
       \}
 
 let g:ycm_rust_src_path = '~/src/rust/src'
+
+" ctrl-p shows file, buffers and mru
+let g:ctrlp_cmd = 'CtrlPMixed'
 
 
 
