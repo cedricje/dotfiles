@@ -145,6 +145,7 @@ function TabToggle()
 endfunction
 
 noremap <silent> <F5> :call TabToggle()<CR>
+nnoremap <F6> :set list!<CR>
 
 map <F3> :NERDTreeToggle<CR>
 
