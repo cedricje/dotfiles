@@ -149,6 +149,7 @@ nnoremap <F6> :set list!<CR>
 
 map <F3> :NERDTreeToggle<CR>
 
+nnoremap <F11> :!cscope -bRk<CR>:cs reset<CR>
 
 " === unite plugin ===
 "contemt searching
