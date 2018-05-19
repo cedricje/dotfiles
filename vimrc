@@ -27,6 +27,15 @@ NeoBundleFetch 'Shougo/neobundle.vim'
                 \     'unix' : 'gmake',
                 \    },
                 \ }
+    NeoBundle 'Valloric/YouCompleteMe', {
+                \ 'build' : {
+                \     'linux' : './install.py --clang-completer --rust-completer',
+                \     'mac' : './install.py --clang-completer --rust-completer',
+                \     'unix' : './install.py --clang-completer --rust-completer',
+                \     'windows' : './install.py --clang-completer --rust-completer',
+                \     'cygwin' : './install.py --clang-completer --rust-completer'
+                \    },
+                \ }
 	NeoBundle 'altercation/vim-colors-solarized'
     NeoBundle 'LaTeX-Suite-aka-Vim-LaTeX'
     NeoBundle 'Tagbar'
@@ -191,6 +200,23 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 "python autocompletion
 let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 0
+
+" YouCompleteMe
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_filetype_blacklist = {
+      \ 'tagbar' : 1,
+      \ 'qf' : 1,
+      \ 'notes' : 1,
+      \ 'markdown' : 1,
+      \ 'unite' : 1,
+      \ 'text' : 1,
+      \ 'vimwiki' : 1,
+      \ 'pandoc' : 1,
+      \ 'infolog' : 1,
+      \ 'mail' : 1,
+      \}
+
+let g:ycm_rust_src_path = '~/src/rust/src'
 
 
 
