@@ -46,6 +46,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
     NeoBundle 'asins/mark'
     NeoBundle 'hari-rangarajan/CCTree' " Vim CCTree plugin
     NeoBundle 'Python-mode-klen' " 0.6.2 python mode
+    NeoBundle 'scrooloose/nerdtree'
+
     " You can specify revision/branch/tag.
     "NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 
@@ -131,6 +133,8 @@ function TabToggle()
 endfunction
 
 noremap <silent> <F5> :call TabToggle()<CR>
+
+map <F3> :NERDTreeToggle<CR>
 
 
 " === unite plugin ===
