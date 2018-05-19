@@ -117,14 +117,18 @@ au InsertLeave * match ExtraWhiteSpace /\s\+$/
 "go through buffers
 nnoremap <Tab> :bn<CR>
 
+set ts=4 sw=4 expandtab
+
 "cycle between tabsettings
-let b:TabIndex = 0
 let g:TabSettings = [{'ts': 8, 'sw' : 8, 'expandtab' : 0},
                     \{'ts' : 4, 'sw' : 4, 'expandtab' : 1},
                     \{'ts' : 4, 'sw' : 4, 'expandtab' : 0} ]
 
 
 function TabToggle()
+    if !exists("b:TabIndex")
+        let b:TabIndex = 0
+    endif
     let l:max = len(g:TabSettings)
     let l:buf = 'TabSettings '
     let b:TabIndex = b:TabIndex + 1
