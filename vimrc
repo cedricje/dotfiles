@@ -179,6 +179,12 @@ nnoremap <space>y :<C-u>Unite history/yank<CR>
 let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='solarized'
+let g:airline_exclude_preview=1
+
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
 set laststatus=2
 
 " === tagbar plugin ===
